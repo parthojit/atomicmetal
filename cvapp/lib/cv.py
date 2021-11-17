@@ -4,6 +4,7 @@ from lib.mission import control
 import json
 import pandas as pd
 
+
 class CV(object):
     def __init__(self):
         self.c = control()
