@@ -1,4 +1,3 @@
-import threading
 import time
 import matplotlib.pyplot as plt
 from lib.mission import control
