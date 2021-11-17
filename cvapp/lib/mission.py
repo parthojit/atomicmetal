@@ -2,15 +2,10 @@
 import nidaqmx
 import time
 import pyvisa
-import tkinter as tk
 import matplotlib.pyplot as plt
 import time
 import json
-import numpy as np
 import matplotlib.animation as animation
-import serial
-import pandas as pd
-import threading
 from datetime import date
 
 today = date.today()
