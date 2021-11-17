@@ -2,9 +2,6 @@ from lib.mission import control
 from lib.cv import CV
 import tkinter as tk
 import threading
-import sys
-import matplotlib.pyplot as plt
-
 
 class Application(tk.Tk):
     #GUI application based on Tkinter
