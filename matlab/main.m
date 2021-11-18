@@ -13,7 +13,7 @@ function varargout = main(varargin)
 %      existing singleton*.  Starting from the left, property value pairs are
 %      applied to the GUI before main_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to main_OpeningFcn via varargin.
+%      quit.  All inputs are passed to main_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 15-Nov-2021 16:46:01
+% Last Modified by GUIDE v2.5 17-Nov-2021 16:07:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -60,6 +60,7 @@ guidata(hObject, handles);
 
 % UIWAIT makes main wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+addpath(genpath('lib'));
 
 
 % --- Outputs from this function are returned to the command line.
@@ -79,14 +80,21 @@ function start_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 disp("-- start");
+set(handles.start,'BackgroundColor','green');
+set(handles.quit,'BackgroundColor','white');
+cv(handles);
 
-% --- Executes on button press in stop.
-function stop_Callback(hObject, eventdata, handles)
-% hObject    handle to stop (see GCBO)
+
+% --- Executes on button press in quit.
+function quit_Callback(hObject, eventdata, handles)
+% hObject    handle to quit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-disp("-- stop");
-
+disp("-- quit");
+set(handles.start,'BackgroundColor','white');
+set(handles.quit,'BackgroundColor','red');
+override();
+close all;
 
 
 function v_max_Callback(hObject, eventdata, handles)
@@ -204,18 +212,18 @@ end
 
 
 
-function edit7_Callback(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+function p_low_Callback(hObject, eventdata, handles)
+% hObject    handle to alpha (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit7 as text
-%        str2double(get(hObject,'String')) returns contents of edit7 as a double
+% Hints: get(hObject,'String') returns contents of alpha as text
+%        str2double(get(hObject,'String')) returns contents of alpha as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit7_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+function alpha_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to alpha (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -285,6 +293,19 @@ function filename_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function filename_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to filename (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function p_low_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to p_low (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
